@@ -52,14 +52,16 @@
             </div>
             <div class="col-lg-2 col-md-6 col-sm-12 site-footer__column">
                 <h2>Quick Links</h2>
-                <ul>
-                    <li><a href="#top">Home</a></li>
-                    <li><a href="#about_me">About</a></li>
-                    <li><a href="#portfolio">Projects</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/blog' ) ); ?>">Blog</a></li>
-                    <li><a href="#contact_me">Contact</a></li>
-                </ul>
+                <?php
+                wp_nav_menu(
+                    array(
+                        'theme_location' => horacebenjamin_footer_menu_location(),
+                        'container'      => false,
+                        'menu_class'     => 'site-footer__menu',
+                        'fallback_cb'    => false,
+                    )
+                );
+                ?>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 site-footer__column">
                 <h2>Services</h2>
@@ -84,8 +86,8 @@
         <div class="site-footer__bottom">
             <p>&copy; <?php echo date('Y') ?> Horace Benjamin. All rights reserved.</p>
             <nav aria-label="Footer legal links">
-                <a href="<?php echo esc_url( home_url( '/privacy-policy' ) ); ?>">Privacy Policy</a>
-                <a href="<?php echo esc_url( home_url( '/terms-and-conditions' ) ); ?>">Terms &amp; Conditions</a>
+                <a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>">Privacy Policy</a>
+                <a href="<?php echo esc_url( home_url( '/terms-and-conditions/' ) ); ?>">Terms &amp; Conditions</a>
             </nav>
         </div>
     </div>

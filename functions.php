@@ -29,10 +29,16 @@ add_theme_support('menus');
 // Menus
 register_nav_menus(
     array(
-        'main-menu' => 'Main Menu Location',
+        'main-menu'   => 'Main Menu Location',
         'mobile-menu' => 'Mobile Menu Location',
+        'footer-menu' => 'Footer Menu Location',
     )
 );
+
+function horacebenjamin_footer_menu_location() : string
+{
+    return has_nav_menu( 'footer-menu' ) ? 'footer-menu' : 'main-menu';
+}
 
 function my_projects() : void
 {
