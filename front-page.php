@@ -1,20 +1,51 @@
 <?php get_header() ?>
-<section class="py-5 mb-4 bg-bg-two home-hero">
-    <div class="container-fluid">
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-lg-6 col-md-6 col-sm-12 text-center">
-                    <svg class="bd-placeholder-img rounded-circle" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+<section class="home-hero">
+    <div class="container">
+        <div class="home-hero__grid">
+            <div class="home-hero__content">
+                <p class="home-hero__eyebrow">Full-Stack Developer</p>
+                <h1>I build scalable web applications that solve real business problems.</h1>
+                <p class="home-hero__intro">Specialising in Laravel, Vue.js and modern web technologies. I build fast, secure and user-friendly systems that help businesses streamline operations and grow.</p>
+                <div class="home-hero__actions" aria-label="Primary actions">
+                    <a class="btn btn-custom-yellow home-hero__button" href="<?php echo esc_url( home_url( '/projects/' ) ); ?>" title="View My Projects">
+                        View My Projects
+                        <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>
+                    </a>
+                    <a class="btn home-hero__button home-hero__button--outline" href="<?php echo get_template_directory_uri(); ?>/assets/files/Horace-Benjamin-CV.pdf" title="Download CV" download>
+                        Download CV
+                        <i class="fa-solid fa-download" aria-hidden="true"></i>
+                    </a>
+                    <a class="btn home-hero__button home-hero__button--outline" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" title="Contact Me">
+                        Contact Me
+                        <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="home-hero__portrait" aria-label="Portrait of Horace Benjamin">
+                <div class="home-hero__portrait-ring" aria-hidden="true"></div>
+                <div class="home-hero__dots" aria-hidden="true"></div>
+                <div class="home-hero__photo">
+                    <svg class="bd-placeholder-img rounded-circle" width="300" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Horace Benjamin" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <title>Horace Benjamin</title>
+                        <rect width="100%" height="100%" fill="#F7CF26"></rect>
                         <image href="<?php echo get_template_directory_uri(); ?>/assets/images/me.jpg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" />
                     </svg>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <h1 class="display-5 fw-bold text-white pt-3">Horace Benjamin Portfolio</h1>
-                    <p class="col-md-8 fs-4 text-white">I am a Web developer based in Sheffield specialising in Website and Web Application Development.</p>
-                    <a class="btn btn-custom-yellow btn-lg" href="<?php echo get_template_directory_uri(); ?>/assets/files/Horace-Benjamin-CV.pdf" title="Downloads CV" download>Download CV</a>
+                <div class="home-hero__stat">
+                    <strong>5+</strong>
+                    <span>Years Experience</span>
                 </div>
+            </div>
+            <div class="home-hero__tech">
+                <p class="home-hero__tech-title">Tech Stack</p>
+                <ul class="home-hero__tech-list" aria-label="Tech stack">
+                    <li><i class="fa-brands fa-laravel" aria-hidden="true"></i>Laravel</li>
+                    <li><i class="fa-brands fa-vuejs" aria-hidden="true"></i>Vue.js</li>
+                    <li><i class="fa-brands fa-php" aria-hidden="true"></i>PHP</li>
+                    <li><i class="fa-solid fa-database" aria-hidden="true"></i>MySQL</li>
+                    <li><i class="fa-brands fa-js" aria-hidden="true"></i>JavaScript</li>
+                    <li><i class="fa-brands fa-wordpress" aria-hidden="true"></i>Wordpress</li>
+                </ul>
             </div>
         </div>
     </div>
