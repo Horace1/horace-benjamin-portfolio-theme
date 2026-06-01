@@ -1,7 +1,7 @@
-<footer class="py-5 bg-bg-one">
+<footer class="site-footer">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="row site-footer__top">
+            <div class="col-lg-4 col-md-6 col-sm-12 site-footer__brand">
                 <svg xmlns="http://www.w3.org/2000/svg" width="175.454" height="83.016" viewBox="0 0 175.454 83.016">
                     <g id="Artwork_2" data-name="Artwork 2" transform="translate(87.727 41.508)">
                         <g id="Group_94" data-name="Group 94" transform="translate(-87.727 -41.508)">
@@ -37,10 +37,56 @@
                         </g>
                     </g>
                 </svg>
+                <p class="site-footer__intro">Full-stack developer based in Sheffield, UK. Building web applications that help businesses grow.</p>
+                <div class="site-footer__socials" aria-label="Social links">
+                    <a href="https://github.com/horace1" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/horace-benjamin-78214353" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                    <a href="mailto:horacebenjamin84@googlemail.com" aria-label="Email">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    </a>
+                </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 d-flex align-items-center pt-3">
-                <p class="text-white">&copy; Copyright <?php echo date('Y') ?> Horace Benjamin | All Rights Reserved.</p>
+            <div class="col-lg-2 col-md-6 col-sm-12 site-footer__column">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="#top">Home</a></li>
+                    <li><a href="#about_me">About</a></li>
+                    <li><a href="#portfolio">Projects</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/blog' ) ); ?>">Blog</a></li>
+                    <li><a href="#contact_me">Contact</a></li>
+                </ul>
             </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 site-footer__column">
+                <h2>Services</h2>
+                <ul>
+                    <li>Web Development</li>
+                    <li>Admin Systems</li>
+                    <li>API Integration</li>
+                    <li>WordPress Development</li>
+                    <li>Maintenance &amp; Support</li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 site-footer__column site-footer__contact">
+                <h2>Get In Touch</h2>
+                <ul>
+                    <li><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i><a href="tel:07932212729">07932 212729</a></li>
+                    <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:horacebenjamin84@googlemail.com">horacebenjamin84@googlemail.com</a></li>
+                    <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Sheffield, UK</span></li>
+                    <li><i class="fa-brands fa-linkedin" aria-hidden="true"></i><a href="https://linkedin.com/in/horace-benjamin-78214353" target="_blank" rel="noopener noreferrer">linkedin.com/in/horace-benjamin-78214353</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="site-footer__bottom">
+            <p>&copy; <?php echo date('Y') ?> Horace Benjamin. All rights reserved.</p>
+            <nav aria-label="Footer legal links">
+                <a href="<?php echo esc_url( home_url( '/privacy-policy' ) ); ?>">Privacy Policy</a>
+                <a href="<?php echo esc_url( home_url( '/terms-and-conditions' ) ); ?>">Terms &amp; Conditions</a>
+            </nav>
         </div>
     </div>
 </footer>

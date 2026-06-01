@@ -1,20 +1,23 @@
 <?php
 
 // Load style sheets and scripts
-function enqueue_styles_and_scripts() {
+function enqueue_styles_and_scripts(): void
+{
+    $theme_dir = get_template_directory();
+    $theme_uri = get_template_directory_uri();
 
-    wp_register_style('font-awesome', get_template_directory_uri() . '/node_modules/@fortawesome/fontawesome-free/css/all.css', array(), '5.15.3', 'all');
+    wp_register_style('font-awesome', $theme_uri . '/node_modules/@fortawesome/fontawesome-free/css/all.css', array(), '5.15.3', 'all');
     wp_enqueue_style('font-awesome');
 
-    wp_register_style('style', get_template_directory_uri() . '/dist/app.css', [], 'all');
+    wp_register_style('style', $theme_uri . '/dist/app.css', [], filemtime($theme_dir . '/dist/app.css'), 'all');
     wp_enqueue_style('style');
 
     wp_enqueue_script('jquery');
 
-    wp_register_script('bootstrap-js', get_template_directory_uri() . '/node_modules/bootstrap/dist/js/bootstrap.bundle.js', array('jquery'), '5.3.2', true); // Enqueue Bootstrap JS in the footer
+    wp_register_script('bootstrap-js', $theme_uri . '/node_modules/bootstrap/dist/js/bootstrap.bundle.js', array('jquery'), '5.3.2', true); // Enqueue Bootstrap JS in the footer
     wp_enqueue_script('bootstrap-js');
 
-    wp_register_script('script', get_template_directory_uri() . '/dist/app.js', array('jquery'), '1.0', true);
+    wp_register_script('script', $theme_uri . '/dist/app.js', array('jquery'), filemtime($theme_dir . '/dist/app.js'), true);
     wp_enqueue_script('script');
 }
 
@@ -31,7 +34,7 @@ register_nav_menus(
     )
 );
 
-function my_projects()
+function my_projects() : void
 {
     $labels = array(
         'name' => 'Projects',
@@ -56,7 +59,7 @@ function my_projects()
 
 add_action('init','my_projects');
 
-function technologies()
+function technologies() : void
 {
     $args = array(
         'labels' => array(
