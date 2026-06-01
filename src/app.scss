@@ -1,0 +1,11 @@
+$custom-colors: (
+        "custom-yellow": #F7CF26,
+        "bg-one": #151822,
+        "bg-two": #383E50,
+);
+
+@import "node_modules/bootstrap/scss/bootstrap";
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import "_custom-styles";
+@import "nav";
+@import "_skills";

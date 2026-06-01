@@ -1,0 +1,53 @@
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__heading {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #222;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__row {
+    display: flex;
+    gap: 1rem;
+
+    // Limit to 2 items per row, align left
+    .skills__skill {
+      flex: 1;
+      min-width: 100px;
+    }
+  }
+
+  &__skill {
+    padding: 0.75rem 1.25rem;
+    font-size: 1.1rem;
+    background: rgba(153, 153, 153, 0.15);
+    border-radius: 5px;
+    font-weight: 600;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+
+    i {
+      font-size: 1.2rem;
+    }
+
+    &:hover {
+      background: rgba(153, 153, 153, 0.25);
+      transform: scale(1.03);
+    }
+  }
+}
+
+

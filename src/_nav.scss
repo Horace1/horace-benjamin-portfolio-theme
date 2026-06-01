@@ -1,0 +1,117 @@
+.hb-header {
+  background: linear-gradient(90deg, #060d19 0%, #0a1221 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+}
+
+.hb-brand {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 2.2rem;
+}
+
+.hb-brand svg {
+  width: 124px;
+  height: auto;
+}
+
+.hb-header__collapse {
+  align-items: center;
+}
+
+.hb-main-menu {
+  gap: 1rem;
+}
+
+.hb-main-menu .menu-item > a {
+  position: relative;
+  padding: 0.72rem 0.9rem;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: rgba(214, 221, 234, 0.88);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.hb-main-menu .menu-item > a::after {
+  content: "";
+  position: absolute;
+  left: 0.9rem;
+  right: 0.9rem;
+  bottom: 0.3rem;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #F7CF26;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+
+.hb-main-menu .menu-item > a:hover {
+  color: #fff;
+}
+
+.hb-main-menu .menu-item > a:hover::after {
+  transform: scaleX(1);
+}
+
+.hb-main-menu .current-menu-item > a,
+.hb-main-menu .current-menu-ancestor > a,
+.hb-main-menu .current_page_item > a,
+.hb-main-menu .active > a,
+.hb-main-menu .menu-item > a.active {
+  color: #fff;
+}
+
+.hb-main-menu .current-menu-item > a::after,
+.hb-main-menu .current-menu-ancestor > a::after,
+.hb-main-menu .current_page_item > a::after,
+.hb-main-menu .active > a::after,
+.hb-main-menu .menu-item > a.active::after {
+  transform: scaleX(1);
+}
+
+.hb-header__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.66rem 1.2rem;
+  border-radius: 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #0a1221;
+}
+
+.hb-header__cta:hover,
+.hb-header__cta:focus {
+  color: #0a1221;
+}
+
+@media (max-width: 991.98px) {
+  .hb-brand svg {
+    width: 106px;
+  }
+
+  .hb-main-menu {
+    gap: 0;
+    margin-top: 0.6rem;
+  }
+
+  .hb-main-menu .menu-item > a {
+    padding: 0.58rem 0;
+  }
+
+  .hb-main-menu .menu-item > a::after,
+  .hb-main-menu .current-menu-item > a::after,
+  .hb-main-menu .current-menu-ancestor > a::after,
+  .hb-main-menu .current_page_item > a::after,
+  .hb-main-menu .active > a::after,
+  .hb-main-menu .menu-item > a.active::after {
+    left: 0;
+    right: auto;
+    width: 36px;
+  }
+
+  .hb-header__cta {
+    margin-top: 0.8rem;
+  }
+}

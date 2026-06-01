@@ -1,0 +1,14 @@
+# Windows
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+
+# Node dependencies
+node_modules/
+
+# WordPress debug log
+wp-content/debug.log
+
+

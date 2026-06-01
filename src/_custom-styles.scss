@@ -1,0 +1,17 @@
+.btn-custom-yellow {
+  background-color: map-get($custom-colors, "custom-yellow");
+  border-color: map-get($custom-colors, "custom-yellow");
+}
+
+.btn-custom-yellow:hover {
+  background-color: darken(map-get($custom-colors, "custom-yellow"), 10%);
+  border-color: darken(map-get($custom-colors, "custom-yellow"), 10%);
+}
+
+.bg-bg-one{
+  background-color: map-get($custom-colors, "bg-one");
+}
+
+.bg-bg-two{
+  background-color: map-get($custom-colors, "bg-two");
+}
