@@ -62,6 +62,7 @@ function horacebenjamin_register_projects_post_type() : void
         'menu_icon'    => 'dashicons-admin-post',
         'hierarchical' => true,
         'supports'     => array( 'title', 'editor', 'thumbnail' ),
+        'show_in_rest' => true,
     );
 
     register_post_type( 'projects', $args );
@@ -70,18 +71,200 @@ function horacebenjamin_register_projects_post_type() : void
 
 add_action( 'init', 'horacebenjamin_register_projects_post_type' );
 
-function horacebenjamin_register_technologies_taxonomy() : void
+function horacebenjamin_register_projects_taxonomies() : void
 {
-    $args = array(
-        'labels' => array(
-            'name'          => 'Technologies',
-            'singular_name' => 'Technology',
+    $taxonomies = array(
+        'project_type' => array(
+            'singular'     => 'Project Type',
+            'plural'       => 'Project Types',
+            'rewrite_slug' => 'project-type',
+            'hierarchical' => true,
         ),
-        'public'       => true,
-        'hierarchical' => true,
+        'project_feature' => array(
+            'singular'     => 'Project Feature',
+            'plural'       => 'Project Features',
+            'rewrite_slug' => 'project-feature',
+            'hierarchical' => false,
+        ),
+        'technology' => array(
+            'singular'     => 'Technology',
+            'plural'       => 'Technologies',
+            'rewrite_slug' => 'technology',
+            'hierarchical' => false,
+        ),
     );
 
-    register_taxonomy( 'technologies', array( 'projects' ), $args );
+    foreach ( $taxonomies as $taxonomy => $settings ) {
+        register_taxonomy(
+            $taxonomy,
+            array( 'projects' ),
+            array(
+                'labels'            => array(
+                    'name'                       => $settings['plural'],
+                    'singular_name'              => $settings['singular'],
+                    'search_items'               => 'Search ' . $settings['plural'],
+                    'all_items'                  => 'All ' . $settings['plural'],
+                    'parent_item'                => $settings['hierarchical'] ? 'Parent ' . $settings['singular'] : null,
+                    'parent_item_colon'          => $settings['hierarchical'] ? 'Parent ' . $settings['singular'] . ':' : null,
+                    'edit_item'                  => 'Edit ' . $settings['singular'],
+                    'update_item'                => 'Update ' . $settings['singular'],
+                    'add_new_item'               => 'Add New ' . $settings['singular'],
+                    'new_item_name'              => 'New ' . $settings['singular'] . ' Name',
+                    'separate_items_with_commas' => ! $settings['hierarchical'] ? 'Separate ' . strtolower( $settings['plural'] ) . ' with commas' : null,
+                    'add_or_remove_items'        => ! $settings['hierarchical'] ? 'Add or remove ' . strtolower( $settings['plural'] ) : null,
+                    'choose_from_most_used'      => ! $settings['hierarchical'] ? 'Choose from the most used ' . strtolower( $settings['plural'] ) : null,
+                    'menu_name'                  => $settings['plural'],
+                ),
+                'public'            => true,
+                'hierarchical'      => $settings['hierarchical'],
+                'show_ui'           => true,
+                'show_admin_column' => true,
+                'show_in_rest'      => true,
+                'rewrite'           => array(
+                    'slug'       => $settings['rewrite_slug'],
+                    'with_front' => false,
+                ),
+            )
+        );
+    }
 
+    // Keep the previous taxonomy available for older project posts without showing duplicate admin controls.
+    if ( ! taxonomy_exists( 'technologies' ) ) {
+        register_taxonomy(
+            'technologies',
+            array( 'projects' ),
+            array(
+                'labels'       => array(
+                    'name'          => 'Legacy Technologies',
+                    'singular_name' => 'Legacy Technology',
+                ),
+                'public'       => false,
+                'show_ui'      => false,
+                'show_in_rest' => false,
+                'hierarchical' => false,
+                'rewrite'      => false,
+            )
+        );
+    }
 }
-add_action( 'init', 'horacebenjamin_register_technologies_taxonomy' );
+add_action( 'init', 'horacebenjamin_register_projects_taxonomies' );
+
+function horacebenjamin_seed_project_taxonomy_terms() : void
+{
+    if ( get_option( 'horacebenjamin_project_taxonomy_terms_seeded' ) ) {
+        return;
+    }
+
+    $default_terms = array(
+        'project_type' => array(
+            'SaaS Application',
+            'Booking System',
+            'CRM',
+            'Customer Portal',
+            'Automation',
+            'AI Integration',
+            'Dashboard',
+            'E-commerce',
+            'WordPress',
+        ),
+        'project_feature' => array(
+            'Role-Based Access',
+            'Real-Time Updates',
+            'Reporting & Analytics',
+            'Team Collaboration',
+            'Payments',
+            'Email Notifications',
+            'File Uploads',
+            'API Integration',
+            'Booking Management',
+            'Calendar Sync',
+            'Stripe Integration',
+            'AI Chat',
+            'Document Processing',
+            'Multi-Tenant',
+        ),
+        'technology' => array(
+            'Laravel',
+            'PHP',
+            'JavaScript',
+            'TypeScript',
+            'Vue.js',
+            'Livewire',
+            'Alpine.js',
+            'Inertia.js',
+            'MySQL',
+            'PostgreSQL',
+            'WordPress',
+            'Docker',
+            'AWS',
+            'Stripe',
+            'OpenAI',
+            'REST APIs',
+        ),
+    );
+
+    foreach ( $default_terms as $taxonomy => $terms ) {
+        foreach ( $terms as $term_name ) {
+            if ( ! term_exists( $term_name, $taxonomy ) ) {
+                wp_insert_term( $term_name, $taxonomy );
+            }
+        }
+    }
+
+    update_option( 'horacebenjamin_project_taxonomy_terms_seeded', 1, false );
+}
+add_action( 'init', 'horacebenjamin_seed_project_taxonomy_terms', 20 );
+
+function horacebenjamin_migrate_legacy_project_technologies() : void
+{
+    if ( get_option( 'horacebenjamin_legacy_project_technologies_migrated' ) || ! taxonomy_exists( 'technologies' ) || ! taxonomy_exists( 'technology' ) ) {
+        return;
+    }
+
+    $project_ids = get_posts(
+        array(
+            'post_type'              => 'projects',
+            'post_status'            => 'any',
+            'posts_per_page'         => -1,
+            'fields'                 => 'ids',
+            'no_found_rows'          => true,
+            'update_post_meta_cache' => false,
+            'update_post_term_cache' => false,
+        )
+    );
+
+    foreach ( $project_ids as $project_id ) {
+        $legacy_terms = get_the_terms( $project_id, 'technologies' );
+
+        if ( empty( $legacy_terms ) || is_wp_error( $legacy_terms ) ) {
+            continue;
+        }
+
+        $technology_term_ids = array();
+
+        foreach ( $legacy_terms as $legacy_term ) {
+            $technology_term = term_exists( $legacy_term->name, 'technology' );
+
+            if ( ! $technology_term ) {
+                $technology_term = wp_insert_term(
+                    $legacy_term->name,
+                    'technology',
+                    array(
+                        'slug' => $legacy_term->slug,
+                    )
+                );
+            }
+
+            if ( ! is_wp_error( $technology_term ) && ! empty( $technology_term['term_id'] ) ) {
+                $technology_term_ids[] = (int) $technology_term['term_id'];
+            }
+        }
+
+        if ( ! empty( $technology_term_ids ) ) {
+            wp_set_object_terms( $project_id, $technology_term_ids, 'technology', true );
+        }
+    }
+
+    update_option( 'horacebenjamin_legacy_project_technologies_migrated', 1, false );
+}
+add_action( 'init', 'horacebenjamin_migrate_legacy_project_technologies', 30 );

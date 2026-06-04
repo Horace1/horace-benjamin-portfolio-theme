@@ -14,6 +14,87 @@ __webpack_require__.r(__webpack_exports__);
 // src/app.js
 
 
+var projectList = document.querySelector('[data-projects-list]');
+if (projectList) {
+  var filterForm = document.querySelector('.projects-filter');
+  var typeControl = document.querySelector('[data-project-filter="type"]');
+  var technologyControl = document.querySelector('[data-project-filter="technology"]');
+  var featureControl = document.querySelector('[data-project-filter="feature"]');
+  var sortControl = document.querySelector('[data-project-filter="sort"]');
+  var searchControl = document.querySelector('[data-project-filter="search"]');
+  var submitControl = filterForm ? filterForm.querySelector('.projects-filter__submit') : null;
+  var searchTimer;
+  var submitFilters = function submitFilters() {
+    if (!filterForm) {
+      return;
+    }
+    if (typeof filterForm.requestSubmit === 'function') {
+      filterForm.requestSubmit();
+      return;
+    }
+    filterForm.submit();
+  };
+  var submitFiltersAfterSearch = function submitFiltersAfterSearch() {
+    window.clearTimeout(searchTimer);
+    searchTimer = window.setTimeout(submitFilters, 500);
+  };
+  var updateMultiSelectLabel = function updateMultiSelectLabel(control, defaultLabel) {
+    if (!control || !control.matches('details')) {
+      return;
+    }
+    var selectedLabels = Array.from(control.querySelectorAll('input[type="checkbox"]:checked')).map(function (checkbox) {
+      var label = checkbox.closest('label');
+      return label ? label.textContent.trim() : checkbox.value;
+    });
+    var labelTarget = control.querySelector('[data-project-filter-label]');
+    if (labelTarget) {
+      labelTarget.textContent = selectedLabels.length ? selectedLabels.join(', ') : defaultLabel;
+    }
+  };
+  var updateFilterLabels = function updateFilterLabels() {
+    updateMultiSelectLabel(typeControl, 'All Project Types');
+    updateMultiSelectLabel(technologyControl, 'All Technologies');
+    updateMultiSelectLabel(featureControl, 'All Features');
+  };
+  [typeControl, technologyControl, featureControl].forEach(function (control) {
+    if (!control) {
+      return;
+    }
+    control.querySelectorAll('input[type="checkbox"]').forEach(function (checkbox) {
+      checkbox.addEventListener('change', function () {
+        updateFilterLabels();
+        submitFilters();
+      });
+    });
+    control.addEventListener('toggle', function () {
+      if (!control.open) {
+        return;
+      }
+      [typeControl, technologyControl, featureControl].forEach(function (otherControl) {
+        if (otherControl && otherControl !== control) {
+          otherControl.open = false;
+        }
+      });
+    });
+  });
+  document.addEventListener('click', function (event) {
+    [typeControl, technologyControl, featureControl].forEach(function (control) {
+      if (control && control.open && !control.contains(event.target)) {
+        control.open = false;
+      }
+    });
+  });
+  updateFilterLabels();
+  if (sortControl) {
+    sortControl.addEventListener('change', submitFilters);
+  }
+  if (searchControl) {
+    searchControl.addEventListener('input', submitFiltersAfterSearch);
+  }
+  if (submitControl) {
+    submitControl.hidden = true;
+  }
+}
 
 /***/ }),
 
