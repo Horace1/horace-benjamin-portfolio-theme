@@ -247,7 +247,7 @@ $get_term_slugs = static function ( int $post_id, string $taxonomy ) : array {
             <div class="projects-page-hero__grid">
                 <div class="projects-page-hero__content">
                     <p class="projects-page__eyebrow">My Projects</p>
-                    <h1>Software That Solves Real Business Problems</h1>
+                    <h1>Software That Solves Real Business Problems.</h1>
                     <p>Explore a collection of web applications, business systems and digital products built to solve operational challenges and improve the way organisations work. Each project demonstrates a focus on clean architecture, scalable development and delivering meaningful business outcomes.</p>
 <!--                    <div class="projects-page-hero__stats" aria-label="Project statistics">-->
 <!--                        --><?php //foreach ( $project_stats as $stat ) : ?>
