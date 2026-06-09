@@ -99,10 +99,6 @@ $work_steps = array(
                         <image href="<?php echo esc_url( get_template_directory_uri() . '/assets/images/me.jpg' ); ?>" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
                     </svg>
                 </div>
-                <div class="home-hero__stat about-page-hero__stat">
-                    <strong>5+</strong>
-                    <span>Years Experience</span>
-                </div>
             </div>
         </div>
     </div>

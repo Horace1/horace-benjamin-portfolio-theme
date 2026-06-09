@@ -56,6 +56,7 @@
 
 .hb-main-menu .current-menu-item > a,
 .hb-main-menu .current-menu-ancestor > a,
+.hb-main-menu .current_page_parent > a,
 .hb-main-menu .current_page_item > a,
 .hb-main-menu .active > a,
 .hb-main-menu .menu-item > a.active {
@@ -64,6 +65,7 @@
 
 .hb-main-menu .current-menu-item > a::after,
 .hb-main-menu .current-menu-ancestor > a::after,
+.hb-main-menu .current_page_parent > a::after,
 .hb-main-menu .current_page_item > a::after,
 .hb-main-menu .active > a::after,
 .hb-main-menu .menu-item > a.active::after {
@@ -103,6 +105,7 @@
   .hb-main-menu .menu-item > a::after,
   .hb-main-menu .current-menu-item > a::after,
   .hb-main-menu .current-menu-ancestor > a::after,
+  .hb-main-menu .current_page_parent > a::after,
   .hb-main-menu .current_page_item > a::after,
   .hb-main-menu .active > a::after,
   .hb-main-menu .menu-item > a.active::after {

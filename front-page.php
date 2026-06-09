@@ -258,43 +258,11 @@ $portfolio_stats = array(
                 'no_found_rows'  => true,
             );
             $blog_query = new WP_Query( $blog_args );
-            $fallback_articles = array(
-                array(
-                    'category' => 'Laravel',
-                    'title' => 'Building Role-Based Access Control in Laravel',
-                    'summary' => 'A step-by-step guide to implementing secure role and permission systems in your Laravel applications.',
-                    'meta' => 'May 12, 2024',
-                    'read_time' => '6 min read',
-                ),
-                array(
-                    'category' => 'Vue.js',
-                    'title' => 'Building Dynamic Interfaces with Vue 3',
-                    'summary' => 'Tips and best practices for building fast, reactive and maintainable Vue.js applications.',
-                    'meta' => 'Apr 28, 2024',
-                    'read_time' => '5 min read',
-                ),
-                array(
-                    'category' => 'Development',
-                    'title' => 'My Laravel Development Workflow',
-                    'summary' => 'Tools, packages and habits that help me build better, faster and more reliable applications.',
-                    'meta' => 'Apr 10, 2024',
-                    'read_time' => '7 min read',
-                ),
-                array(
-                    'category' => 'Performance',
-                    'title' => 'Optimizing Laravel Applications for Production',
-                    'summary' => 'Learn practical techniques for improving performance with caching, queues, database optimization, and deployment best practices.',
-                    'meta' => 'Mar 22, 2024',
-                    'read_time' => '8 min read',
-                ),
-            );
         ?>
         <div class="blog-insights__grid">
-                <?php $blog_cards_rendered = 0; ?>
                 <?php if ( $blog_query->have_posts() ) : ?>
                     <?php while ( $blog_query->have_posts() ) : $blog_query->the_post(); ?>
                         <?php
-                            $blog_cards_rendered++;
                             $article_categories = get_the_category();
                             $article_category = ! empty( $article_categories ) ? $article_categories[0]->name : 'Development';
                             $word_count = str_word_count( wp_strip_all_tags( get_the_content() ) );
@@ -314,24 +282,9 @@ $portfolio_stats = array(
                         </article>
                     <?php endwhile; ?>
                     <?php wp_reset_postdata(); ?>
+                <?php else : ?>
+                    <p>No posts yet.</p>
                 <?php endif; ?>
-                <?php for ( $fallback_index = $blog_cards_rendered; $fallback_index < 4; $fallback_index++ ) : ?>
-                    <?php if ( isset( $fallback_articles[ $fallback_index ] ) ) : ?>
-                        <?php $fallback_article = $fallback_articles[ $fallback_index ]; ?>
-                        <article class="blog-card">
-                            <div class="blog-card__link">
-                                <span class="blog-card__category"><?php echo esc_html( $fallback_article['category'] ); ?></span>
-                                <h3><?php echo esc_html( $fallback_article['title'] ); ?></h3>
-                                <p><?php echo esc_html( $fallback_article['summary'] ); ?></p>
-                                <span class="blog-card__meta">
-                                    <span><?php echo esc_html( $fallback_article['meta'] ); ?></span>
-                                    <span aria-hidden="true">&bull;</span>
-                                    <span><?php echo esc_html( $fallback_article['read_time'] ); ?></span>
-                                </span>
-                            </div>
-                        </article>
-                    <?php endif; ?>
-                <?php endfor; ?>
         </div>
     </div>
 </section>
