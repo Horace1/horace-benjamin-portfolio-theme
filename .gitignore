@@ -11,4 +11,10 @@ node_modules/
 # WordPress debug log
 wp-content/debug.log
 
+# Temporary build/test files
+tmp-*
+
+# Generated CSS source maps
+*.css.map
+
 
