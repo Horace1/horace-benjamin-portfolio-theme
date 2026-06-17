@@ -30,34 +30,34 @@ $service_values = array(
 
 $services = array(
     array(
-        'icon'        => 'fa-solid fa-code',
-        'title'       => 'Business Applications & Portals',
-        'description' => 'Custom web applications, customer portals and internal tools built around your workflows and business needs.',
+        'icon'        => 'fa-solid fa-window-restore',
+        'title'       => 'Web Application Development',
+        'description' => 'Custom web applications built with Laravel, Vue.js and modern tools.',
     ),
     array(
-        'icon'        => 'fa-regular fa-calendar-check',
-        'title'       => 'Booking & Management Systems',
-        'description' => 'Streamline scheduling, customer management and day-to-day operations with purpose-built platforms.',
+        'icon'        => 'fa-solid fa-chart-line',
+        'title'       => 'Admin Dashboards & Systems',
+        'description' => 'Powerful admin panels and dashboards to manage your business.',
     ),
     array(
-        'icon'        => 'fa-solid fa-arrows-split-up-and-left',
-        'title'       => 'Workflow Automation & Integrations',
-        'description' => 'Reduce manual work by connecting systems, automating processes and improving information flow.',
+        'icon'        => 'fa-solid fa-code-branch',
+        'title'       => 'API Development & Integration',
+        'description' => 'RESTful APIs and third-party integrations to extend your platforms.',
     ),
     array(
-        'icon'        => 'fa-regular fa-chart-bar',
-        'title'       => 'Dashboards & Reporting Platforms',
-        'description' => 'Transform business data into clear dashboards and reports that support faster, better decisions.',
+        'icon'        => 'fa-brands fa-wordpress',
+        'title'       => 'WordPress Development',
+        'description' => 'Custom themes, plugins and sites tailored to your needs.',
     ),
     array(
-        'icon'        => 'fa-solid fa-brain',
-        'title'       => 'AI-Powered Business Solutions',
-        'description' => 'Intelligent assistants, knowledge systems and automation tools designed to improve productivity.',
+        'icon'        => 'fa-solid fa-table-cells',
+        'title'       => 'Database Design & Optimisation',
+        'description' => 'Well-structured databases built for performance and scalability.',
     ),
     array(
-        'icon'        => 'fa-solid fa-wrench',
-        'title'       => 'Support & Optimisation',
-        'description' => 'Ongoing maintenance, performance improvements and enhancements that keep your systems reliable.',
+        'icon'        => 'fa-solid fa-screwdriver-wrench',
+        'title'       => 'Maintenance & Support',
+        'description' => 'Ongoing support and improvements to keep your systems running.',
     ),
 );
 
@@ -162,10 +162,12 @@ $industries = array(
         <div class="services-page-list__grid" aria-label="Services I provide">
             <?php foreach ( $services as $service ) : ?>
                 <article class="services-page-card">
-                    <span class="services-page-card__icon">
-                        <i class="<?php echo esc_attr( $service['icon'] ); ?>" aria-hidden="true"></i>
-                    </span>
-                    <h3><?php echo esc_html( $service['title'] ); ?></h3>
+                    <div class="services-page-card__head">
+                        <span class="services-page-card__icon">
+                            <i class="<?php echo esc_attr( $service['icon'] ); ?>" aria-hidden="true"></i>
+                        </span>
+                        <h3><?php echo esc_html( $service['title'] ); ?></h3>
+                    </div>
                     <p><?php echo esc_html( $service['description'] ); ?></p>
                 </article>
             <?php endforeach; ?>

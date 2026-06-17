@@ -120,17 +120,14 @@ $recent_posts = get_posts(
                     <div class="blog-page-hero__dots" aria-hidden="true"></div>
                     <div class="blog-page-laptop" aria-hidden="true">
                         <div class="blog-page-laptop__screen">
-                            <span></span><span></span><span></span>
-                            <div class="blog-page-laptop__image"></div>
-                            <div class="blog-page-laptop__lines">
-                                <i></i><i></i><i></i><i></i>
-                            </div>
                             <div class="blog-page-laptop__code">
                                 <strong>&lt;/&gt;</strong>
-                                <code>1&nbsp;&nbsp;public function insights()</code>
-                                <code>2&nbsp;&nbsp;return view('blog');</code>
-                                <code>3&nbsp;&nbsp;$topics = ['Laravel'];</code>
-                                <code>4&nbsp;&nbsp;echo $topic;</code>
+                                <code>public function buildSystems()</code>
+                                <code>{</code>
+                                <code>&nbsp;&nbsp;$apps = Article::practical();</code>
+                                <code>&nbsp;&nbsp;$systems = BusinessFlow::optimise();</code>
+                                <code>&nbsp;&nbsp;return view('blog.insights', compact('apps'));</code>
+                                <code>}</code>
                             </div>
                         </div>
                         <div class="blog-page-laptop__base"></div>

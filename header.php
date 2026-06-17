@@ -61,6 +61,16 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse hb-header__collapse" id="navbarNavDropdown">
+            <div class="hb-mobile-menu__top d-lg-none">
+                <a class="hb-mobile-menu__brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="Horace Benjamin">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="175.454" height="83.016" viewBox="0 0 175.454 83.016" aria-hidden="true" focusable="false">
+                        <use href="#Horace_Benjamin_Header_logo"></use>
+                    </svg>
+                </a>
+                <button class="hb-mobile-menu__close" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-label="Close navigation">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
             <?php
             wp_nav_menu(
                 array(
@@ -75,6 +85,17 @@
                 Get In Touch
                 <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>
             </a>
+            <div class="hb-mobile-menu__socials d-lg-none" aria-label="Social links">
+                <a href="https://linkedin.com/in/horace-benjamin-78214353" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                </a>
+                <a href="https://github.com/horace1" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <i class="fa-brands fa-github" aria-hidden="true"></i>
+                </a>
+                <a href="mailto:horacebenjamin84@googlemail.com" aria-label="Email">
+                    <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+                </a>
+            </div>
         </div>
     </div>
 </nav>

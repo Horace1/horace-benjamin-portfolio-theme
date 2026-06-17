@@ -73,10 +73,6 @@ $portfolio_stats = array(
                         Download CV
                         <i class="fa-solid fa-download" aria-hidden="true"></i>
                     </a>
-                    <a class="btn home-hero__button home-hero__button--outline" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" title="Contact Me">
-                        Contact Me
-                        <i class="fa-regular fa-envelope" aria-hidden="true"></i>
-                    </a>
                 </div>
             </div>
             <div class="home-hero__portrait" aria-label="Portrait of Horace Benjamin">

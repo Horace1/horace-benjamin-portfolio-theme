@@ -10,9 +10,6 @@ function horacebenjamin_enqueue_styles_and_scripts(): void
     $style_version = file_exists( $style_path ) ? filemtime( $style_path ) : wp_get_theme()->get( 'Version' );
     $script_version = file_exists( $script_path ) ? filemtime( $script_path ) : wp_get_theme()->get( 'Version' );
 
-    wp_register_style( 'font-awesome', $theme_uri . '/node_modules/@fortawesome/fontawesome-free/css/all.css', array(), '5.15.3', 'all' );
-    wp_enqueue_style( 'font-awesome' );
-
     wp_register_style( 'style', $theme_uri . '/dist/app.css', array(), $style_version, 'all' );
     wp_enqueue_style( 'style' );
 

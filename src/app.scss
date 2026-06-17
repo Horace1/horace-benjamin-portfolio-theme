@@ -4,8 +4,12 @@ $custom-colors: (
         "bg-two": #383E50,
 );
 
-@import "node_modules/bootstrap/scss/bootstrap";
-@import '~@fortawesome/fontawesome-free/css/all.css';
+@import "../node_modules/bootstrap/scss/bootstrap";
+$fa-font-path: "/wp-content/themes/horacebenjaminportfolio/node_modules/@fortawesome/fontawesome-free/webfonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/brands";
 @import "_custom-styles";
 @import "nav";
 @import "_skills";
