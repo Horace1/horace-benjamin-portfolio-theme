@@ -266,6 +266,11 @@ $portfolio_stats = array(
                         ?>
                         <article class="blog-card">
                             <a href="<?php echo esc_url( get_permalink() ); ?>" class="blog-card__link" aria-label="<?php echo esc_attr( get_the_title() ); ?>">
+                                <?php if ( has_post_thumbnail() ) : ?>
+                                    <span class="blog-card__media">
+                                        <?php the_post_thumbnail( 'medium_large', array( 'class' => 'blog-card__image' ) ); ?>
+                                    </span>
+                                <?php endif; ?>
                                 <span class="blog-card__category"><?php echo esc_html( $article_category ); ?></span>
                                 <h3><?php echo esc_html( get_the_title() ); ?></h3>
                                 <p><?php echo esc_html( wp_trim_words( get_the_excerpt() ?: get_the_content(), 20, '...' ) ); ?></p>

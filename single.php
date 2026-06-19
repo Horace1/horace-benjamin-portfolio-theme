@@ -72,6 +72,11 @@ while ( have_posts() ) :
                                 <p><?php echo esc_html( wp_trim_words( get_the_content(), 24, '.' ) ); ?></p>
                             <?php endif; ?>
                         </div>
+                        <?php if ( has_post_thumbnail() ) : ?>
+                            <figure class="single-blog-featured-image">
+                                <?php the_post_thumbnail( 'full' ); ?>
+                            </figure>
+                        <?php endif; ?>
                         <div class="single-article-meta">
                             <span><i class="fa-regular fa-calendar" aria-hidden="true"></i><?php echo esc_html( get_the_date( 'j F Y' ) ); ?></span>
                             <span><i class="fa-regular fa-clock" aria-hidden="true"></i><?php echo esc_html( $read_time ); ?> min read</span>
