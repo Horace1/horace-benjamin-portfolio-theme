@@ -23539,13 +23539,51 @@ a.blog-card__link:focus {
   margin: 0;
 }
 
+.project-card__features,
 .project-card__tech {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
   list-style: none;
-  margin: 1rem 0 1.25rem;
   padding: 0;
+}
+
+.project-card__features {
+  margin: 1rem 0 0.75rem;
+}
+
+.project-card__features li {
+  color: rgba(242, 241, 235, 0.86);
+  font-size: 0.8rem;
+  line-height: 1.3;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.project-card__features li::before {
+  align-items: center;
+  border: 1px solid #F7CF26;
+  border-radius: 50%;
+  color: #F7CF26;
+  content: "\f00c";
+  display: inline-flex;
+  font-family: "Font Awesome 6 Free";
+  font-size: 0.48rem;
+  font-weight: 900;
+  height: 0.78rem;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0.12rem;
+  width: 0.78rem;
+}
+
+.project-card__tech {
+  margin: 1rem 0 1.25rem;
+}
+
+.project-card__features + .project-card__tech {
+  margin-top: 0;
 }
 
 .project-card__tech li {

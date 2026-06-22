@@ -56,6 +56,44 @@ $portfolio_stats = array(
         'label' => 'Commitment',
     ),
 );
+
+$get_project_term_names = static function ( int $post_id, string $taxonomy ) : array {
+    $terms = get_the_terms( $post_id, $taxonomy );
+
+    if ( empty( $terms ) || is_wp_error( $terms ) ) {
+        return array();
+    }
+
+    return wp_list_pluck( $terms, 'name' );
+};
+
+$tech_stack = array(
+    array(
+        'icon' => 'fa-brands fa-laravel',
+        'name' => 'Laravel',
+    ),
+    array(
+        'icon' => 'fa-brands fa-vuejs',
+        'name' => 'Vue.js',
+    ),
+    array(
+        'icon' => 'fa-brands fa-php',
+        'name' => 'PHP',
+    ),
+    array(
+        'icon' => 'fa-solid fa-database',
+        'name' => 'MySQL',
+    ),
+    array(
+        'icon' => 'fa-brands fa-js',
+        'name' => 'JavaScript',
+    ),
+    array(
+        'icon' => 'fa-brands fa-wordpress',
+        'name' => 'WordPress',
+    ),
+);
+
 ?>
 <section class="home-hero">
     <div class="container">
@@ -93,12 +131,9 @@ $portfolio_stats = array(
             <div class="home-hero__tech">
                 <p class="home-hero__tech-title">Tech Stack</p>
                 <ul class="home-hero__tech-list" aria-label="Tech stack">
-                    <li><i class="fa-brands fa-laravel" aria-hidden="true"></i>Laravel</li>
-                    <li><i class="fa-brands fa-vuejs" aria-hidden="true"></i>Vue.js</li>
-                    <li><i class="fa-brands fa-php" aria-hidden="true"></i>PHP</li>
-                    <li><i class="fa-solid fa-database" aria-hidden="true"></i>MySQL</li>
-                    <li><i class="fa-brands fa-js" aria-hidden="true"></i>JavaScript</li>
-                    <li><i class="fa-brands fa-wordpress" aria-hidden="true"></i>Wordpress</li>
+                    <?php foreach ( $tech_stack as $technology ) : ?>
+                        <li><i class="<?php echo esc_attr( $technology['icon'] ); ?>" aria-hidden="true"></i><?php echo esc_html( $technology['name'] ); ?></li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </div>
@@ -164,7 +199,15 @@ $portfolio_stats = array(
         <div class="projects-showcase__grid">
             <?php while ( $project_query->have_posts() ) : $project_query->the_post(); ?>
                 <?php
-                    $project_terms = get_the_terms( get_the_ID(), 'technologies' );
+                    $project_type_terms = $get_project_term_names( get_the_ID(), 'project_type' );
+                    $project_feature_terms = $get_project_term_names( get_the_ID(), 'project_feature' );
+                    $project_terms = $get_project_term_names( get_the_ID(), 'technology' );
+
+                    if ( empty( $project_terms ) && taxonomy_exists( 'technologies' ) ) {
+                        $project_terms = $get_project_term_names( get_the_ID(), 'technologies' );
+                    }
+
+                    $project_features = ! empty( $project_type_terms ) ? $project_type_terms : $project_feature_terms;
                     $project_index = $project_query->current_post + 1;
                     $live_demo_url = get_post_meta( get_the_ID(), 'live_demo_url', true );
                 ?>
@@ -185,17 +228,20 @@ $portfolio_stats = array(
                         <div class="project-card__summary">
                             <?php echo wp_kses_post( wpautop( wp_trim_words( get_the_content(), 22, '...' ) ) ); ?>
                         </div>
-                        <ul class="project-card__tech" aria-label="Technologies used">
-                            <?php if ( ! empty( $project_terms ) && ! is_wp_error( $project_terms ) ) : ?>
-                                <?php foreach ( $project_terms as $project_term ) : ?>
-                                    <li><?php echo esc_html( $project_term->name ); ?></li>
+                        <?php if ( ! empty( $project_features ) ) : ?>
+                            <ul class="project-card__features" aria-label="Project types">
+                                <?php foreach ( array_slice( $project_features, 0, 4 ) as $project_feature ) : ?>
+                                    <li><?php echo esc_html( $project_feature ); ?></li>
                                 <?php endforeach; ?>
-                            <?php else : ?>
-                                <li>Laravel</li>
-                                <li>Livewire</li>
-                                <li>Alpine.js</li>
-                            <?php endif; ?>
-                        </ul>
+                            </ul>
+                        <?php endif; ?>
+                        <?php if ( ! empty( $project_terms ) ) : ?>
+                            <ul class="project-card__tech" aria-label="Technologies used">
+                                <?php foreach ( array_slice( $project_terms, 0, 6 ) as $project_term ) : ?>
+                                    <li><?php echo esc_html( $project_term ); ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
                         <div class="project-card__actions">
                             <?php if ( ! empty( $live_demo_url ) ) : ?>
                                 <a class="project-card__demo" href="<?php echo esc_url( $live_demo_url ); ?>" target="_blank" rel="noopener noreferrer">Live Demo</a>
