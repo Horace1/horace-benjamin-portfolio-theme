@@ -419,10 +419,12 @@ $get_term_slugs = static function ( int $post_id, string $taxonomy ) : array {
                                     View Case Study
                                     <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>
                                 </a>
-                                <a class="projects-list-card__button" href="<?php echo esc_url( ! empty( $github_url ) ? $github_url : 'https://github.com/' ); ?>" target="_blank" rel="noopener noreferrer">
-                                    <i class="fa-brands fa-github" aria-hidden="true"></i>
-                                    View Code 
-                                </a>
+                                <?php if ( ! empty( $github_url ) ) : ?>
+                                    <a class="projects-list-card__button" href="<?php echo esc_url( $github_url ); ?>" target="_blank" rel="noopener noreferrer">
+                                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                                        View Code
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         </article>
                     <?php endwhile; ?>
